@@ -69,7 +69,7 @@ class ProductGrid extends StatelessWidget {
         // SCOPED MODEL: Wraps items in the grid in a ScopedModelDecendent to access
         // the add() function in the cart model
         return ScopedModelDescendant<CartModel>(
-          rebuildOnChange: false,
+          rebuildOnChange: false, /// 不会进行重绘
           builder: (context, child, model) => ProductSquare(
                 product: product,
                 onTap: () => model.add(product),

@@ -19,40 +19,40 @@ import 'package:reactive_exploration/src/vanilla/main.dart' as vanilla;
 /// the imported files. When you're exploring a particular architecture,
 /// just change the `flavor = ...` line below and (hot-)restart the app.
 void main() {
-  final flavor = Architecture.vanilla;
+  final flavor = Architecture.start;
 
   print("\n\n===== Running: $flavor =====\n\n");
 
   switch (flavor) {
     case Architecture.start:
-      start.main();
+      start.main(); /// 1.0  yes nothing added, Start
       return;
     case Architecture.startBlob:
-      start_blob.main();
+      start_blob.main(); /// no
       return;
     case Architecture.singleton:
-      singleton.main();
+      singleton.main(); /// no
       return;
     case Architecture.vanilla:
-      vanilla.main();
+      vanilla.main(); /// 使用传递函数的形式。来访问数据 no
       return;
     case Architecture.valueNotifier:
-      value_notifier.main();
+      value_notifier.main(); /// no 使用 cartObserver 不断传递 observer 对象，进行添加产品，和添加产品后的通知
       return;
     case Architecture.bloc:
-      bloc.main();
+      bloc.main(); /// 3.0 yes 最后的 business logic component
       return;
     case Architecture.blocComplex:
-      bloc_complex.main();
+      bloc_complex.main(); /// yes 使用 InheritedWidget 完成，
       return;
     case Architecture.blocStart:
-      bloc_start.main();
+      bloc_start.main(); /// 2.0 yes 在讲解使用Stream之前 todoInherightWidget ,
       return;
     case Architecture.scoped:
-      scoped.main();
+      scoped.main(); /// yes 使用 ScopedModel 完成
       return;
     case Architecture.redux:
-      redux.main();
+      redux.main(); /// no
       return;
   }
 }

@@ -36,11 +36,11 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Bloc"),
         actions: <Widget>[
-          StreamBuilder<int>(
+          StreamBuilder<int>( /// 将 CartButton 包装在 StreamBuilder 中， int 是 cartBloc ItemCount 的数据类型
             stream: cartBloc.itemCount,
-            initialData: 0,
+            initialData: 0, /// 初始值
             builder: (context, snapshot) => CartButton(
-                  itemCount: snapshot.data,
+                  itemCount: snapshot.data, /// 对显示的数据进行跟新，更新UI
                   onPressed: () {
                     Navigator.of(context).pushNamed(BlocCartPage.routeName);
                   },

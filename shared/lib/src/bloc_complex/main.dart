@@ -58,11 +58,11 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Bloc Complex"),
         actions: <Widget>[
-          StreamBuilder<int>(
+          StreamBuilder<int>(  /// 监听itemCount 的变化，item Count是int类型
             stream: cartBloc.itemCount,
-            initialData: cartBloc.itemCount.value,
+            initialData: cartBloc.itemCount.value, /// 初始值
             builder: (context, snapshot) => CartButton(
-                  itemCount: snapshot.data,
+                  itemCount: snapshot.data, /// always be the latest value of itemCount
                   onPressed: () {
                     Navigator.of(context).pushNamed(BlocCartPage.routeName);
                   },

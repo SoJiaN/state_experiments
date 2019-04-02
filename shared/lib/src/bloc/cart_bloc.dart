@@ -16,7 +16,7 @@ class CartBloc {
   final Cart _cart = Cart();
 
   final BehaviorSubject<List<CartItem>> _items =
-      BehaviorSubject<List<CartItem>>(seedValue: []);
+      BehaviorSubject<List<CartItem>>(seedValue: []); /// 使用 BehaviorSubject 每次订阅的时候，它都发射最近的数据
 
   final BehaviorSubject<int> _itemCount =
       BehaviorSubject<int>(seedValue: 0);
@@ -25,22 +25,22 @@ class CartBloc {
       StreamController<CartAddition>();
 
   CartBloc() {
-    _cartAdditionController.stream.listen((addition) {
+    _cartAdditionController.stream.listen((addition) { /// 输入流的Stream 监听添加product 给 cart的事件
       int currentCount = _cart.itemCount;
       _cart.add(addition.product, addition.count);
-      _items.add(_cart.items);
+      _items.add(_cart.items); /// behaviorSubject 添加
       int updatedCount = _cart.itemCount;
       if (updatedCount != currentCount) {
-        _itemCount.add(updatedCount);
+        _itemCount.add(updatedCount); /// behaviorSubject 添加
       }
     });
   }
 
-  Sink<CartAddition> get cartAddition => _cartAdditionController.sink;
+  Sink<CartAddition> get cartAddition => _cartAdditionController.sink; /// Sink 是输入的流，a input of stream,然后你再监听它的变化
 
-  Stream<int> get itemCount => _itemCount.stream;
+  Stream<int> get itemCount => _itemCount.stream; /// 输出的流
 
-  Stream<List<CartItem>> get items => _items.stream;
+  Stream<List<CartItem>> get items => _items.stream; /// 输出的流
 
   void dispose() {
     _items.close();
